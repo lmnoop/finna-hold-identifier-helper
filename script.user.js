@@ -3,8 +3,9 @@
 // @namespace   raina
 // @match       https://*.finna.fi/Holds/List
 // @grant       none
-// @version     1.1.202418
+// @version     1.2.20241209
 // @author      raina
+// @description Displays your Hold Identifier on your Holds and Recalls page by fetching it from your Profile page
 // ==/UserScript==
 let heading = document.querySelector(`h2`);
 let span = document.createElement("span");
@@ -14,7 +15,7 @@ span.style.fontSize = "smaller";
 span.style.marginLeft = "1ex";
 span.textContent = localStorage.holdIdentifier ?? "";
 heading.append(span);
-fetch("/MyResearch/Profile")
+fetch(`${location.protocol}//${location.host}/MyResearch/Profile`)
 .then(response => response.text())
 .then(html => {
 	const parser = new DOMParser();
